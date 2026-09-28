@@ -1,1 +1,56 @@
-
+[
+    {
+        "id": "d9dcc49d7bff961f",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a4d6902f366233ab",
+        "type": "inject",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "topic": "lab2/Myshko/basic",
+        "payload": "Myshko",
+        "payloadType": "str",
+        "x": 480,
+        "y": 220,
+        "wires": [
+            [
+                "8b231ec3904440cf"
+            ]
+        ]
+    },
+    {
+        "id": "8b231ec3904440cf",
+        "type": "debug",
+        "z": "d9dcc49d7bff961f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 220,
+        "wires": []
+    }
+]

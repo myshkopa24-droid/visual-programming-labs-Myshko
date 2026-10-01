@@ -1,0 +1,76 @@
+[
+    {
+        "id": "d9dcc49d7bff961f",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "300806c203260478",
+        "type": "inject",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 900,
+        "y": 280,
+        "wires": [
+            [
+                "c01e031ff3f38919"
+            ]
+        ]
+    },
+    {
+        "id": "c01e031ff3f38919",
+        "type": "function",
+        "z": "d9dcc49d7bff961f",
+        "name": "function 2",
+        "func": "// Получаем текущее значение счетчика из контекста flow (если его нет, ставим 0)\nlet count = flow.get(\"click_count\") || 0;\n\n// Увеличиваем счетчик на 1\ncount += 1;\n\n// Сохраняем новое значение обратно в контекст flow\nflow.set(\"click_count\", count);\n\n// Передаем результат дальше в msg.payload\nmsg.payload = {\n    message: \"Клик успешно засчитан!\",\n    total_clicks: count\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 280,
+        "wires": [
+            [
+                "4193f7dbf51a6983"
+            ]
+        ]
+    },
+    {
+        "id": "4193f7dbf51a6983",
+        "type": "debug",
+        "z": "d9dcc49d7bff961f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1280,
+        "y": 280,
+        "wires": []
+    }
+]

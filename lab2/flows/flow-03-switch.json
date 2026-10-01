@@ -1,0 +1,126 @@
+[
+    {
+        "id": "d9dcc49d7bff961f",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2a4a4b0ea63e9816",
+        "type": "function",
+        "z": "d9dcc49d7bff961f",
+        "name": "function 2",
+        "func": "// Генерируем случайное число\nconst score = Math.floor(Math.random() * 100) + 1;\n\n// Важно: записываем число в payload\nmsg.payload = score;\n\n// Возвращаем msg! Без этой строки ничего не пойдет дальше\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 300,
+        "wires": [
+            [
+                "b165f745025a7120"
+            ]
+        ]
+    },
+    {
+        "id": "b165f745025a7120",
+        "type": "switch",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "50",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "50",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 670,
+        "y": 300,
+        "wires": [
+            [
+                "bd80c164cc8f4e15"
+            ],
+            [
+                "de8b12f6cfc54013"
+            ]
+        ]
+    },
+    {
+        "id": "bd80c164cc8f4e15",
+        "type": "debug",
+        "z": "d9dcc49d7bff961f",
+        "name": "Успех (>=50)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "de8b12f6cfc54013",
+        "type": "debug",
+        "z": "d9dcc49d7bff961f",
+        "name": "Провал (<50)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "0e4c8c32a2d44c55",
+        "type": "inject",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 300,
+        "wires": [
+            [
+                "2a4a4b0ea63e9816"
+            ]
+        ]
+    }
+]

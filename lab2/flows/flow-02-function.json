@@ -1,0 +1,76 @@
+[
+    {
+        "id": "d9dcc49d7bff961f",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a4d6902f366233ab",
+        "type": "inject",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "topic": "lab2/Myshko/basic",
+        "payload": "Myshko",
+        "payloadType": "str",
+        "x": 220,
+        "y": 300,
+        "wires": [
+            [
+                "e5f81d0a9c77de01"
+            ]
+        ]
+    },
+    {
+        "id": "e5f81d0a9c77de01",
+        "type": "function",
+        "z": "d9dcc49d7bff961f",
+        "name": "Обработка данных",
+        "func": "// 1. Создаем массив данных\nconst scores = [10, 25, 40, 15, 30];\nlet totalSum = 0;\n\n// 2. Цикл for для подсчета суммы\nfor (let i = 0; i < scores.length; i++) {\n    totalSum += scores[i];\n}\n\n// 3. Условие if/else\nlet status = \"\";\nif (totalSum > 100) {\n    status = \"Высокий результат\";\n} else {\n    status = \"Нормальный результат\";\n}\n\n// 4. Формируем итоговый объект и возвращаем его в msg.payload\nmsg.payload = {\n    user: \"Myshko\",\n    scoresList: scores,\n    sum: totalSum,\n    statusResult: status,\n    timestamp: new Date().toISOString()\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 300,
+        "wires": [
+            [
+                "2f51a0ad2631ee2b"
+            ]
+        ]
+    },
+    {
+        "id": "2f51a0ad2631ee2b",
+        "type": "debug",
+        "z": "d9dcc49d7bff961f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 300,
+        "wires": []
+    }
+]

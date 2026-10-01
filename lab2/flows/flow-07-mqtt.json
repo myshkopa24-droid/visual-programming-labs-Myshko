@@ -1,0 +1,125 @@
+[
+    {
+        "id": "d9dcc49d7bff961f",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "eca61d0f6c27a623",
+        "type": "inject",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Привет из MQTT!",
+        "payloadType": "str",
+        "x": 270,
+        "y": 280,
+        "wires": [
+            [
+                "77cda52f8d575658"
+            ]
+        ]
+    },
+    {
+        "id": "77cda52f8d575658",
+        "type": "mqtt out",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "topic": "student/Myshko/lab2/test",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "afcc9f87b2b3ef6e",
+        "x": 570,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "51e45c6017fe327b",
+        "type": "mqtt in",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "topic": "student/Myshko/lab2/test",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "afcc9f87b2b3ef6e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 290,
+        "y": 360,
+        "wires": [
+            [
+                "6b4615182a58fca3"
+            ]
+        ]
+    },
+    {
+        "id": "6b4615182a58fca3",
+        "type": "debug",
+        "z": "d9dcc49d7bff961f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "afcc9f87b2b3ef6e",
+        "type": "mqtt-broker",
+        "name": "test.mosquitto",
+        "broker": "test.mosquitto.org",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

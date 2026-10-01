@@ -1,0 +1,141 @@
+[
+    {
+        "id": "d9dcc49d7bff961f",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "300806c203260478",
+        "type": "inject",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 260,
+        "wires": [
+            [
+                "c01e031ff3f38919"
+            ]
+        ]
+    },
+    {
+        "id": "c01e031ff3f38919",
+        "type": "function",
+        "z": "d9dcc49d7bff961f",
+        "name": "function 2",
+        "func": "// Формируем строчку для записи в файл\nconst logData = {\n    user: \"ВашаФамилия\",\n    timestamp: new Date().toISOString(),\n    status: \"Файл успешно обновлен\"\n};\n\n// Переводим объект в JSON-строку и добавляем перенос строки \\n\nmsg.payload = JSON.stringify(logData) + \"\\n\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "7b0784ed79bc2ba9"
+            ]
+        ]
+    },
+    {
+        "id": "7b0784ed79bc2ba9",
+        "type": "file",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "filename": "/data/my_file.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 540,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8ffad25aac0b078d",
+        "type": "file in",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "filename": "/data/my_file.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 360,
+        "y": 340,
+        "wires": [
+            [
+                "4193f7dbf51a6983"
+            ]
+        ]
+    },
+    {
+        "id": "d4a6d4a63d8e0b93",
+        "type": "inject",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "8ffad25aac0b078d"
+            ]
+        ]
+    },
+    {
+        "id": "4193f7dbf51a6983",
+        "type": "debug",
+        "z": "d9dcc49d7bff961f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 340,
+        "wires": []
+    }
+]

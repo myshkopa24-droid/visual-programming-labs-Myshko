@@ -1,0 +1,97 @@
+[
+    {
+        "id": "d9dcc49d7bff961f",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bd80c164cc8f4e15",
+        "type": "debug",
+        "z": "d9dcc49d7bff961f",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "0e4c8c32a2d44c55",
+        "type": "inject",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 300,
+        "wires": [
+            [
+                "b856667bf47a1a1a"
+            ]
+        ]
+    },
+    {
+        "id": "b856667bf47a1a1a",
+        "type": "change",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "lab2/Myshko/change",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Привет из Change node!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 300,
+        "wires": [
+            [
+                "bd80c164cc8f4e15"
+            ]
+        ]
+    }
+]

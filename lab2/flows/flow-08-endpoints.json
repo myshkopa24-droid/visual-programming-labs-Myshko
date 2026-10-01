@@ -1,0 +1,156 @@
+[
+    {
+        "id": "d9dcc49d7bff961f",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "16112b1301fed3e0",
+        "type": "http in",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "url": "/api/text",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 280,
+        "wires": [
+            [
+                "f2e282cc27ed29ca"
+            ]
+        ]
+    },
+    {
+        "id": "6a71f9a04d34eaef",
+        "type": "http response",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "f2e282cc27ed29ca",
+        "type": "template",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "plain",
+        "template": "Привет! Это простой текстовый ответ от сервера Myshko.",
+        "output": "str",
+        "x": 460,
+        "y": 280,
+        "wires": [
+            [
+                "6a71f9a04d34eaef"
+            ]
+        ]
+    },
+    {
+        "id": "8ba98b03f509f68c",
+        "type": "http in",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "url": "/api/info",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 340,
+        "wires": [
+            [
+                "f987496dee7250e2"
+            ]
+        ]
+    },
+    {
+        "id": "3d6269a61b184623",
+        "type": "http response",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "f987496dee7250e2",
+        "type": "function",
+        "z": "d9dcc49d7bff961f",
+        "name": "function 2",
+        "func": "msg.payload = {\n    author: \"Мышко\",\n    group: \"СДП-ИИ-241\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 340,
+        "wires": [
+            [
+                "3d6269a61b184623"
+            ]
+        ]
+    },
+    {
+        "id": "2349901f8cb2b265",
+        "type": "http in",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "url": "/api/items",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 260,
+        "y": 400,
+        "wires": [
+            [
+                "05c11cf3fc972e76"
+            ]
+        ]
+    },
+    {
+        "id": "92d9d266d3a45176",
+        "type": "http response",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "05c11cf3fc972e76",
+        "type": "function",
+        "z": "d9dcc49d7bff961f",
+        "name": "function 3",
+        "func": "// Получаем параметр \"id\" из URL (например, /api/items?id=5)\nconst id = msg.req.query.id;\n\nif (!id) {\n    // Если параметр id не передан — ошибка 400 Bad Request\n    msg.statusCode = 400;\n    msg.payload = { error: \"Ошибка: укажите параметр id (например, ?id=1)\" };\n} else if (id === \"1\") {\n    // Успешный ответ для id=1\n    msg.statusCode = 200;\n    msg.payload = { id: 1, item: \"Кофе Арабика\", status: \"В наличии\" };\n} else {\n    // Если id не найден — ошибка 404 Not Found\n    msg.statusCode = 404;\n    msg.payload = { error: `Товар с id=${id} не найден` };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 400,
+        "wires": [
+            [
+                "92d9d266d3a45176"
+            ]
+        ]
+    }
+]

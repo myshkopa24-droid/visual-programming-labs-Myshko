@@ -1,0 +1,75 @@
+[
+    {
+        "id": "d9dcc49d7bff961f",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bd80c164cc8f4e15",
+        "type": "debug",
+        "z": "d9dcc49d7bff961f",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "0e4c8c32a2d44c55",
+        "type": "inject",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"name\":\"Myshko\",\"group\":\"СДП-ИИ-241\",\"course\":\"Визуальное программирование\"}",
+        "payloadType": "json",
+        "x": 300,
+        "y": 300,
+        "wires": [
+            [
+                "7819adc7c85c8bcd"
+            ]
+        ]
+    },
+    {
+        "id": "7819adc7c85c8bcd",
+        "type": "template",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"student_info\": \"Студент {{payload.name}} из группы {{payload.group}}\",\n  \"subject\": \"{{payload.course}}\",\n  \"status\": \"Успешно сдано\"\n}",
+        "output": "str",
+        "x": 520,
+        "y": 300,
+        "wires": [
+            [
+                "bd80c164cc8f4e15"
+            ]
+        ]
+    }
+]

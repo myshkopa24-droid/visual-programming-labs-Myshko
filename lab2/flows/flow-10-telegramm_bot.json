@@ -1,0 +1,159 @@
+[
+    {
+        "id": "d9dcc49d7bff961f",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4eafb5be6f6d98b7",
+        "type": "telegram command",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "command": "/start",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "scope": "default",
+        "bot": "5ce85e229b93c625",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "2daee1487f9254b6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "98912041f62d23b0",
+        "type": "telegram sender",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "bot": "5ce85e229b93c625",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "130f0c1b196976c9",
+        "type": "telegram receiver",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "bot": "5ce85e229b93c625",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "hasinput": false,
+        "inputs": 0,
+        "handleallupdates": false,
+        "handleprocessupdates": false,
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "760292447f547aea"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2daee1487f9254b6",
+        "type": "function",
+        "z": "d9dcc49d7bff961f",
+        "name": "function 2",
+        "func": "msg.payload.type = 'message';\nmsg.payload.content = 'Привет! Я бот студента Мышко. Используй команду /info или напиши мне любое сообщение!';\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 300,
+        "wires": [
+            [
+                "df4c996d9e984136"
+            ]
+        ]
+    },
+    {
+        "id": "df4c996d9e984136",
+        "type": "telegram sender",
+        "z": "d9dcc49d7bff961f",
+        "name": "",
+        "bot": "5ce85e229b93c625",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "760292447f547aea",
+        "type": "function",
+        "z": "d9dcc49d7bff961f",
+        "name": "function (эхо)",
+        "func": "// Обрабатываем только обычный текст\nif (msg.payload.type === 'message') {\n    const userText = msg.payload.content;\n\n    msg.payload.content = `Вы написали: \"${userText}\" (Ответ от Node-RED)`;\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 360,
+        "wires": [
+            [
+                "98912041f62d23b0"
+            ]
+        ]
+    },
+    {
+        "id": "5ce85e229b93c625",
+        "type": "telegram bot",
+        "botname": "tvl_lab2_Myshko_bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "8730463c26e5c624",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-telegrambot": "19.0.3"
+        }
+    }
+]

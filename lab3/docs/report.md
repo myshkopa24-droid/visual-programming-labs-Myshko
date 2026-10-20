@@ -5,7 +5,7 @@
 Добавь несколько интерактивных элементов (реализующих CRUD)
 
 Было просмотренно:
-user signuo and login
+user signup and login
 user rating and reviews
 coffee brewing guid
 

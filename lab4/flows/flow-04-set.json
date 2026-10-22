@@ -1,0 +1,101 @@
+{
+  "name": "flow-04-set",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        21,
+        0
+      ],
+      "id": "f5c6956c-a116-4006-90d0-d698a0b3b31b",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "19ce6978-9103-42a4-adf9-455a6d12028e",
+              "name": "topic",
+              "value": "lab4/Myshko/set-test",
+              "type": "string"
+            },
+            {
+              "id": "43db20d0-2d07-4e98-9bfc-1c7e954a7519",
+              "name": "timestamp",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            },
+            {
+              "id": "6bdbf2e6-344b-417a-a09e-2936952fc714",
+              "name": "payload",
+              "value": "Данные от Мышко",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "e5273663-2819-4543-808b-72a00edf633d",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Возврат полного объекта сообщения\nreturn [{\n  json: {\n    complete_msg_object: $input.first().json\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "24c70628-9461-46ac-b281-f479625aed42",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "53f340f9-ce77-4974-b301-d6b30b470c39",
+  "meta": {
+    "instanceId": "4ad6ec999507993035083e6490e698c6f4afcfd144c07eee9c5bf7f39a9dbb82"
+  },
+  "nodeGroups": [],
+  "id": "JE1L7J3yBfs3diVt",
+  "tags": []
+}

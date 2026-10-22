@@ -1,0 +1,95 @@
+{
+  "name": "flow-01-manual-set",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -16
+      ],
+      "id": "33ad12e2-a090-43f7-bc5c-3ebcbd187e7e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a192556a-0772-43c7-a5ca-66ccb19b564f",
+              "name": "payload",
+              "value": "Мышко-ИИ-241",
+              "type": "string"
+            },
+            {
+              "id": "42018969-7c45-4a2e-8429-7dd3e69b3d20",
+              "name": "topic",
+              "value": "lab4/Myshko/basic",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        64,
+        -16
+      ],
+      "id": "e3a51225-3d19-4505-b1c3-db1255c2d6a7",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Выводим полученные данные в консоль n8n и возвращаем их дальше\nconsole.log('Received data:', $input.first().json);\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        -16
+      ],
+      "id": "595ba63b-cacf-4485-a2ff-49ced8462a15",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "39b020ac-7826-4159-babf-8a371c08cb04",
+  "meta": {
+    "instanceId": "4ad6ec999507993035083e6490e698c6f4afcfd144c07eee9c5bf7f39a9dbb82"
+  },
+  "nodeGroups": [],
+  "id": "JE1L7J3yBfs3diVt",
+  "tags": []
+}

@@ -1,0 +1,60 @@
+{
+  "name": "flow-02-code",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        21,
+        0
+      ],
+      "id": "f5c6956c-a116-4006-90d0-d698a0b3b31b",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Использование let/const, массивов, объектов и цикла for\nconst items = ['coffee', 'roast', 'grind'];\nlet processedItems = [];\n\nfor (let i = 0; i < items.length; i++) {\n  processedItems.push({\n    id: i + 1,\n    name: items[i].toUpperCase()\n  });\n}\n\nconst resultPayload = {\n  student: \"Мышко_ИИ-241\",\n  count: processedItems.length,\n  list: processedItems\n};\n\nreturn [{ json: { payload: resultPayload } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        256,
+        0
+      ],
+      "id": "3c119553-4afb-4a39-a8aa-948e838a8b49",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "50e183e4-2ea0-4ea3-bff5-3e8649dad722",
+  "meta": {
+    "instanceId": "4ad6ec999507993035083e6490e698c6f4afcfd144c07eee9c5bf7f39a9dbb82"
+  },
+  "nodeGroups": [],
+  "id": "JE1L7J3yBfs3diVt",
+  "tags": []
+}

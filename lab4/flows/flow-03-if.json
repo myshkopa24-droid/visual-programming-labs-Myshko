@@ -1,0 +1,99 @@
+{
+  "name": "flow-03-if",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        21,
+        0
+      ],
+      "id": "f5c6956c-a116-4006-90d0-d698a0b3b31b",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Использование let/const, массивов, объектов и цикла for\nconst items = ['coffee', 'roast', 'grind'];\nlet processedItems = [];\n\nfor (let i = 0; i < items.length; i++) {\n  processedItems.push({\n    id: i + 1,\n    name: items[i].toUpperCase()\n  });\n}\n\nconst resultPayload = {\n  student: \"Мышко_ИИ-241\",\n  count: processedItems.length,\n  list: processedItems\n};\n\nreturn [{ json: { payload: resultPayload } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        256,
+        0
+      ],
+      "id": "3c119553-4afb-4a39-a8aa-948e838a8b49",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 4
+          },
+          "conditions": [
+            {
+              "id": "5868bd4e-adfc-4887-be02-b1299f2f6c20",
+              "leftValue": "={{ $json.payload.count }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.4,
+      "position": [
+        480,
+        0
+      ],
+      "id": "b0d30548-cb95-4af2-9368-fe3bb4b0e902",
+      "name": "If"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "8dab3f73-84ca-4c0f-b475-b7c8af0f532b",
+  "meta": {
+    "instanceId": "4ad6ec999507993035083e6490e698c6f4afcfd144c07eee9c5bf7f39a9dbb82"
+  },
+  "nodeGroups": [],
+  "id": "JE1L7J3yBfs3diVt",
+  "tags": []
+}
